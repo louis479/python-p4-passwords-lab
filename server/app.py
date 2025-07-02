@@ -37,6 +37,13 @@ class CheckSession(Resource):
                 return user.to_dict(), 200
 
         return {}, 204
+    
+class ClearSession(Resource):
+    def delete(self):
+        session['page_views'] = None
+        session['user_id'] = None
+        return {}, 204
+
 
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)  # make sure this is at the top
